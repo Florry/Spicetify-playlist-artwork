@@ -96,6 +96,7 @@ var playlistDartwork = (() => {
 
   // src/listeners/eventListeners.ts
   async function registerEventListeners() {
+    var _a, _b;
     let playlistPanel = getPlaylistPanel();
     while (!playlistPanel) {
       playlistPanel = getPlaylistPanel();
@@ -106,7 +107,8 @@ var playlistDartwork = (() => {
       setImmediate(() => addArtworkToPlaylists());
       setTimeout(() => addArtworkToPlaylists(), 100);
     });
-    playlistPanel == null ? void 0 : playlistPanel.addEventListener("mouseup", () => setTimeout(() => addArtworkToPlaylists(), 25));
+    (_a = document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)) == null ? void 0 : _a.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
+    (_b = document.getElementsByClassName("main-coverSlotExpanded-container").item(0)) == null ? void 0 : _b.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
   }
 
   // src/menues/contextMenues.ts
