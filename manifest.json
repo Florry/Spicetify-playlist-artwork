@@ -2,7 +2,7 @@
 	{
 		"name": "Playlist artwork and folders",
 		"description": "Adds playlists' artwork and folder icons to the playlist panel",
-		"preview": "screenshot.png",
+		"preview": "screenshot-new.png",
 		"main": "dist/playlist-artwork.js",
 		"readme": "README.md",
 		"authors": [

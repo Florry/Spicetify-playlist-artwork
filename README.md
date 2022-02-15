@@ -2,7 +2,7 @@
 
 Adds playlist artwork and folder icons to the playlists panel for quicker indentification of playlists w/ focus on speed and performance.
 
-![](screenshot.png)
+![](screenshot-new.png)
 
 It caches playlist artwork urls in an indexed database after initial fetch for faster access. There is a menu option in the spicetify menu to refresh the cache to force refetch:
 
