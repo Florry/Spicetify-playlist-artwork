@@ -20,7 +20,7 @@ export async function registerEventListeners() {
 		setTimeout(() => addArtworkToPlaylists(), 100);
 	});
 
-	/** When closing a folder so that the panel scrolls up and new playlists come into view */
-	playlistPanel?.addEventListener("mouseup", () => setTimeout(() => addArtworkToPlaylists(), 25));
-
+	/** When clicking cover art to go to a playlist */
+	document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)?.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
+	document.getElementsByClassName("main-coverSlotExpanded-container").item(0)?.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
 }
