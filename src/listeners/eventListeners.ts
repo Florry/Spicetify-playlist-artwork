@@ -21,6 +21,6 @@ export async function registerEventListeners() {
 	});
 
 	/** When clicking cover art to go to a playlist */
-	document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)?.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
-	document.getElementsByClassName("main-coverSlotExpanded-container").item(0)?.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
+	document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)?.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
+	document.getElementsByClassName("main-coverSlotExpanded-container").item(0)?.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
 }

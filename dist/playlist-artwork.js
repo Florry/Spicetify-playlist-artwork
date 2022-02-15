@@ -107,8 +107,8 @@ var playlistDartwork = (() => {
       setImmediate(() => addArtworkToPlaylists());
       setTimeout(() => addArtworkToPlaylists(), 100);
     });
-    (_a = document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)) == null ? void 0 : _a.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
-    (_b = document.getElementsByClassName("main-coverSlotExpanded-container").item(0)) == null ? void 0 : _b.addEventListener("click", () => setImmediate(() => addArtworkToPlaylists()));
+    (_a = document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)) == null ? void 0 : _a.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
+    (_b = document.getElementsByClassName("main-coverSlotExpanded-container").item(0)) == null ? void 0 : _b.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
   }
 
   // src/menues/contextMenues.ts
