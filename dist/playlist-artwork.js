@@ -110,7 +110,7 @@ var playlistDartwork = (() => {
   // src/listeners/eventListeners.ts
   async function registerEventListeners() {
     const playlistPanel = await waitForPlaylistPanel();
-    const observer = new MutationObserver(() => addArtworkToPlaylists());
+    const observer = new MutationObserver(() => setImmediate(() => addArtworkToPlaylists()));
     observer.observe(playlistPanel, { childList: true, subtree: true });
   }
 
