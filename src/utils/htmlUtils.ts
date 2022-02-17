@@ -63,6 +63,17 @@ export function createMissingArtworkImg() {
 	return svg;
 }
 
-export function getPlaylistPanel() {
+function getPlaylistPanel() {
 	return document.getElementsByClassName("os-viewport os-viewport-native-scrollbars-invisible").item(0);
+}
+
+export async function waitForPlaylistPanel() {
+	let playlistPanel = getPlaylistPanel();
+
+	while (!playlistPanel) {
+		playlistPanel = getPlaylistPanel();
+		await new Promise((resolve) => setTimeout(resolve, 100));
+	}
+
+	return playlistPanel;
 }

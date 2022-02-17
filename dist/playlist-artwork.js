@@ -47,10 +47,23 @@ var playlistDartwork = (() => {
   function getPlaylistPanel() {
     return document.getElementsByClassName("os-viewport os-viewport-native-scrollbars-invisible").item(0);
   }
+  async function waitForPlaylistPanel() {
+    let playlistPanel = getPlaylistPanel();
+    while (!playlistPanel) {
+      playlistPanel = getPlaylistPanel();
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return playlistPanel;
+  }
 
   // src/utils/utils.ts
   function getPlaylistId(href) {
     return href.split("/").pop();
+  }
+  async function waitForSpicetify() {
+    while (!(Spicetify.CosmosAsync && Spicetify.Queue && Spicetify.ContextMenu && Spicetify.URI)) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
   }
 
   // src/utils/playlistUtils.ts
@@ -96,19 +109,9 @@ var playlistDartwork = (() => {
 
   // src/listeners/eventListeners.ts
   async function registerEventListeners() {
-    var _a, _b;
-    let playlistPanel = getPlaylistPanel();
-    while (!playlistPanel) {
-      playlistPanel = getPlaylistPanel();
-      await new Promise((resolve) => setTimeout(resolve, 200));
-    }
-    playlistPanel == null ? void 0 : playlistPanel.addEventListener("scroll", () => addArtworkToPlaylists());
-    playlistPanel == null ? void 0 : playlistPanel.addEventListener("click", () => {
-      setImmediate(() => addArtworkToPlaylists());
-      setTimeout(() => addArtworkToPlaylists(), 100);
-    });
-    (_a = document.getElementsByClassName("main-coverSlotCollapsed-container").item(0)) == null ? void 0 : _a.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
-    (_b = document.getElementsByClassName("main-coverSlotExpanded-container").item(0)) == null ? void 0 : _b.addEventListener("click", () => setTimeout(() => addArtworkToPlaylists(), 50));
+    const playlistPanel = await waitForPlaylistPanel();
+    const observer = new MutationObserver(() => addArtworkToPlaylists());
+    observer.observe(playlistPanel, { childList: true, subtree: true });
   }
 
   // src/menues/contextMenues.ts
@@ -274,16 +277,12 @@ var playlistDartwork = (() => {
   // src/app.tsx
   async function main() {
     const cache = await Cache.connect();
-    let playlistPanel = getPlaylistPanel();
-    while (!playlistPanel) {
-      playlistPanel = getPlaylistPanel();
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    }
+    await waitForPlaylistPanel();
     registerEventListeners();
+    await waitForSpicetify();
     registerPlaylistUtilsCache(cache);
     registerContextMenues(cache);
     registerSubMenues(cache);
-    addArtworkToPlaylists();
     Spicetify.showNotification("Playlist artwork loaded");
   }
   var app_default = main;
