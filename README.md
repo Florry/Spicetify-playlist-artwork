@@ -1,4 +1,5 @@
-# Spicetify-playlist-artwork
+# [DEPRECATED] Spicetify-playlist-artwork
+**Depcrated due to this feature being added to spotify natively (🎉)**
 
 Adds playlist artwork and folder icons to the playlists panel for quicker indentification of playlists w/ focus on speed and performance.
 
